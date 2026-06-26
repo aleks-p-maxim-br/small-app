@@ -393,20 +393,26 @@ const App=(()=>{
       const total=formatMobileRowTotal(values, `${currentGroup.text} ${metric}`);
       currentGroup.rows.push({metric,values,total,sectionClass:currentGroup.sectionClass});
     });
-    const fixedHeader=`<thead><tr><th class="mobile-section-head">${Localization.t('section')}</th><th class="mobile-metric-head">${Localization.t('month')}</th></tr></thead>`;
-    const fixedBody=groups.map(group=>group.rows.map((row,idx)=>{
-      const sectionCell=idx===0 ? `<td class="mobile-section-cell ${group.sectionClass}" rowspan="${group.rows.length}"><div class="mobile-section-stacked"><span class="mobile-section-icon">${mobileSectionIcon(group.sectionClass)}</span><span class="mobile-section-text">${mobileSectionLabel(group.text).split('\n').map(x=>`<span>${x}</span>`).join('')}</span></div></td>` : '';
-      return `<tr>${sectionCell}<td class="mobile-metric-cell ${group.sectionClass}">${row.metric}</td></tr>`;
-    }).join('')).join('');
+    let fixedItems=`<div class="mobile-fixed-header mobile-section-head">${Localization.t('section')}</div><div class="mobile-fixed-header mobile-metric-head">${Localization.t('month')}</div>`;
+    let rowIndex=2;
+    groups.forEach(group=>{
+      const start=rowIndex;
+      const span=group.rows.length;
+      fixedItems+=`<div class="mobile-section-cell ${group.sectionClass}" style="grid-row:${start}/span ${span};grid-column:1;"><div class="mobile-section-stacked"><span class="mobile-section-icon">${mobileSectionIcon(group.sectionClass)}</span><span class="mobile-section-text">${mobileSectionLabel(group.text).split('\n').map(x=>`<span>${x}</span>`).join('')}</span></div></div>`;
+      group.rows.forEach(row=>{
+        fixedItems+=`<div class="mobile-metric-cell ${group.sectionClass}" style="grid-row:${rowIndex};grid-column:2;">${row.metric}</div>`;
+        rowIndex++;
+      });
+    });
     const scrollHeader=`<thead><tr>${periodHeaders.map((h,i)=>`<th class="mobile-value-head ${i===periodHeaders.length-1?'mobile-total-cell':''} ${periodBreakEven[i]?'mobile-breakeven':''}">${h}</th>`).join('')}</tr></thead>`;
     const scrollBody=groups.map(group=>group.rows.map(row=>`<tr>${row.values.map((v,i)=>`<td class="mobile-value-cell ${periodBreakEven[i]?'mobile-breakeven':''}">${v}</td>`).join('')}<td class="mobile-value-cell mobile-total-cell">${row.total}</td></tr>`).join('')).join('');
-    host.innerHTML=`<div class="mobile-detail-split"><div class="mobile-fixed-pane"><table class="mobile-fixed-table"><colgroup><col class="mobile-col-section"><col class="mobile-col-metric"></colgroup>${fixedHeader}<tbody>${fixedBody}</tbody></table></div><div class="mobile-months-pane"><table id="mobileDetailTable" class="mobile-months-table"><colgroup>${periodHeaders.map((_,i)=>`<col class="${i===periodHeaders.length-1?'mobile-col-total':'mobile-col-period'}">`).join('')}</colgroup>${scrollHeader}<tbody>${scrollBody}</tbody></table></div></div>`;
+    const totalRows=groups.reduce((sum,g)=>sum+g.rows.length,0);
+    host.innerHTML=`<div class="mobile-detail-split"><div class="mobile-fixed-pane"><div class="mobile-fixed-grid" style="--mobile-detail-row-count:${totalRows};">${fixedItems}</div></div><div class="mobile-months-pane"><table id="mobileDetailTable" class="mobile-months-table"><colgroup>${periodHeaders.map((_,i)=>`<col class="${i===periodHeaders.length-1?'mobile-col-total':'mobile-col-period'}">`).join('')}</colgroup>${scrollHeader}<tbody>${scrollBody}</tbody></table></div></div>`;
     requestAnimationFrame(()=>{
       const screen=document.getElementById('mobileDetailScreen');
-      const rows=host.querySelectorAll('.mobile-fixed-table tbody tr').length;
-      if(screen&&rows){
+      if(screen&&totalRows){
         const available=Math.max(360, window.innerHeight - 138);
-        const rowH=Math.max(24, Math.min(29, Math.floor(available / (rows + 1))));
+        const rowH=Math.max(26, Math.min(32, Math.floor(available / (totalRows + 1))));
         screen.style.setProperty('--mobile-detail-row-h', `${rowH}px`);
       }
     });
@@ -426,7 +432,7 @@ const App=(()=>{
 
 
 
-  function mobilePageOrder(){return ['kpi','chart','summary','detail'];}
+  function mobilePageOrder(){return ['kpi','chart','summary','resumo','detail'];}
   function mobileNextPage(page){const a=mobilePageOrder();const i=a.indexOf(page);return i>=0&&i<a.length-1?a[i+1]:page;}
   function mobilePrevPage(page){const a=mobilePageOrder();const i=a.indexOf(page);return i>0?a[i-1]:page;}
 

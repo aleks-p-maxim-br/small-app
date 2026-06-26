@@ -3867,6 +3867,7 @@ body.chart-modal-open{overflow:hidden!important;}
   .mobile-app-shell[data-page="kpi"] #mobileKpiScreen,
   .mobile-app-shell[data-page="chart"] #mobileChartScreen,
   .mobile-app-shell[data-page="summary"] #mobileSummaryScreen,
+  .mobile-app-shell[data-page="resumo"] #mobileResumoScreen,
   .mobile-app-shell[data-page="detail"] #mobileDetailScreen,
   body.city-start-mode #mobileStartScreen{
     pointer-events:auto!important;
@@ -6072,5 +6073,670 @@ body.chart-modal-open{overflow:hidden!important;}
       height:100vh!important;
       max-height:100vh!important;
     }
+  }
+}
+
+/* =========================================================
+   MOBILE SCREEN 4 POLISH — uniform row rhythm + hidden logo.
+   Mobile-only. Desktop layout remains untouched.
+   ========================================================= */
+@media (max-width: 820px){
+  body[data-mobile-slide="summary"] .topbar .app-brand-top,
+  body[data-mobile-slide="summary"] .topbar .brand-logo{
+    display:none!important;
+    visibility:hidden!important;
+    opacity:0!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen{
+    padding-top:calc(env(safe-area-inset-top,0px) + 34px)!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen .mobile-summary-stack{
+    grid-template-rows:minmax(0,0.50fr) minmax(0,0.50fr)!important;
+    gap:14px!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights{
+    justify-content:flex-start!important;
+    gap:0!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights .insight,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneSummary .summary-row{
+    min-height:38px!important;
+    height:38px!important;
+    max-height:38px!important;
+    box-sizing:border-box!important;
+    border-bottom:1px solid rgba(226,232,240,.78)!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights .insight{
+    display:grid!important;
+    align-items:center!important;
+    grid-template-columns:34px minmax(0,1fr)!important;
+    gap:9px!important;
+    padding:0!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights .insight-badge{
+    width:24px!important;
+    height:24px!important;
+    justify-self:center!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights .insight-title{
+    font-size:10.7px!important;
+    line-height:1.08!important;
+    margin:0 0 1px!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights .insight-text{
+    font-size:9.6px!important;
+    line-height:1.12!important;
+    margin:0!important;
+    white-space:normal!important;
+    overflow:visible!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneSummary{
+    justify-content:flex-start!important;
+    gap:0!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneSummary .summary-row{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    padding:0!important;
+    font-size:10.8px!important;
+    line-height:1.12!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneSummary .summary-row span:first-child{
+    min-width:0!important;
+    padding-right:8px!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneSummary .summary-row span:last-child{
+    flex:0 0 auto!important;
+  }
+}
+
+/* =========================================================
+   MOBILE SCREEN 4 FINAL ACTUAL PATCH — equal row rhythm and no logo.
+   Applied only below 820px; desktop layout is untouched.
+   ========================================================= */
+@media (max-width: 820px){
+  body[data-mobile-slide="summary"] #app .topbar .app-brand-top,
+  body[data-mobile-slide="summary"] #app .topbar .brand-logo,
+  body[data-mobile-slide="summary"] .app-brand-top,
+  body[data-mobile-slide="summary"] .brand-logo{
+    display:none!important;
+    visibility:hidden!important;
+    opacity:0!important;
+    width:0!important;
+    min-width:0!important;
+    height:0!important;
+    overflow:hidden!important;
+    pointer-events:none!important;
+  }
+
+  body[data-mobile-slide="summary"] #app .topbar{
+    justify-content:flex-end!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen{
+    padding-top:calc(env(safe-area-inset-top,0px) + 36px)!important;
+    padding-left:16px!important;
+    padding-right:16px!important;
+    padding-bottom:calc(env(safe-area-inset-bottom,0px) + 16px)!important;
+    overflow:hidden!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen .mobile-summary-stack{
+    flex:1 1 auto!important;
+    min-height:0!important;
+    height:auto!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:flex-start!important;
+    gap:18px!important;
+    overflow:hidden!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen .mobile-info-panel{
+    flex:0 0 auto!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:13px 14px!important;
+    overflow:hidden!important;
+    border-radius:18px!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen .mobile-info-panel h2{
+    margin:0 0 10px!important;
+    padding:0!important;
+    font-size:16px!important;
+    line-height:1.08!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneSummary{
+    display:block!important;
+    height:auto!important;
+    max-height:none!important;
+    min-height:0!important;
+    overflow:visible!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights .insight,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneSummary .summary-row{
+    height:42px!important;
+    min-height:42px!important;
+    max-height:42px!important;
+    box-sizing:border-box!important;
+    border-bottom:1px solid rgba(226,232,240,.84)!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights .insight{
+    display:grid!important;
+    grid-template-columns:34px minmax(0,1fr)!important;
+    align-items:center!important;
+    gap:9px!important;
+    padding:0!important;
+    margin:0!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights .insight-badge{
+    width:25px!important;
+    height:25px!important;
+    justify-self:center!important;
+    align-self:center!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights .insight-title{
+    font-size:11.2px!important;
+    line-height:1.08!important;
+    margin:0 0 2px!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights .insight-text{
+    font-size:10px!important;
+    line-height:1.12!important;
+    margin:0!important;
+    white-space:normal!important;
+    overflow:hidden!important;
+    display:-webkit-box!important;
+    -webkit-line-clamp:2!important;
+    -webkit-box-orient:vertical!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneSummary .summary-row{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    padding:0!important;
+    margin:0!important;
+    font-size:11.4px!important;
+    line-height:1.12!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneSummary .summary-row span:first-child{
+    min-width:0!important;
+    padding-right:10px!important;
+    color:var(--text)!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneSummary .summary-row span:last-child{
+    flex:0 0 auto!important;
+    text-align:right!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen .mobile-detail-next{
+    flex:0 0 auto!important;
+    margin:14px auto 0!important;
+  }
+}
+
+/* =========================================================
+   BR-SAPP Mobile v2 split: Insights and Resumo are separate screens.
+   Mobile-only. Desktop/PC layout is untouched.
+   ========================================================= */
+@media (max-width: 820px){
+  body:not(.city-start-mode) .mobile-app-shell[data-page="resumo"] #mobileResumoScreen{
+    display:flex!important;
+    pointer-events:auto!important;
+  }
+
+  .mobile-app-shell[data-page="resumo"] #mobileResumoScreen,
+  .mobile-app-shell[data-page="summary"] #mobileSummaryScreen{
+    height:100dvh!important;
+    max-height:100dvh!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+  }
+
+  /* Screen 4: PRINCIPAIS INSIGHTS only, sized like a presentation slide. */
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen{
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:center!important;
+    align-items:stretch!important;
+    padding:calc(env(safe-area-inset-top,0px) + 56px) 18px calc(env(safe-area-inset-bottom,0px) + 72px)!important;
+    gap:0!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen .mobile-summary-stack,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen .mobile-insights-stack{
+    flex:1 1 auto!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:center!important;
+    gap:0!important;
+    padding:0!important;
+    margin:0!important;
+    overflow:visible!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen .mobile-info-panel,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen .mobile-insights-panel{
+    width:100%!important;
+    max-width:460px!important;
+    margin:0 auto!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:18px 18px!important;
+    border-radius:22px!important;
+    overflow:visible!important;
+    box-sizing:border-box!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen .mobile-info-panel h2{
+    font-size:18px!important;
+    line-height:1.1!important;
+    margin:0 0 14px!important;
+    letter-spacing:-.02em!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights{
+    display:flex!important;
+    flex-direction:column!important;
+    gap:0!important;
+    height:auto!important;
+    max-height:none!important;
+    overflow:visible!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights .insight{
+    height:72px!important;
+    min-height:72px!important;
+    max-height:72px!important;
+    display:grid!important;
+    grid-template-columns:42px minmax(0,1fr)!important;
+    align-items:center!important;
+    gap:13px!important;
+    padding:0!important;
+    margin:0!important;
+    border-bottom:1px solid rgba(226,232,240,.88)!important;
+    box-sizing:border-box!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights .insight-badge{
+    width:34px!important;
+    height:34px!important;
+    justify-self:center!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights .insight-title{
+    font-size:13.5px!important;
+    line-height:1.15!important;
+    margin:0 0 4px!important;
+    font-weight:900!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights .insight-text{
+    font-size:12px!important;
+    line-height:1.25!important;
+    margin:0!important;
+    overflow:visible!important;
+    display:block!important;
+    -webkit-line-clamp:unset!important;
+    -webkit-box-orient:initial!important;
+  }
+
+  /* Screen 5: RESUMO only, adapted to full smartphone screen. */
+  body:not(.city-start-mode) .mobile-app-shell[data-page="resumo"] #mobileResumoScreen{
+    flex-direction:column!important;
+    justify-content:center!important;
+    align-items:stretch!important;
+    padding:calc(env(safe-area-inset-top,0px) + 56px) 18px calc(env(safe-area-inset-bottom,0px) + 84px)!important;
+    gap:14px!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="resumo"] #mobileResumoScreen .mobile-summary-stack,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="resumo"] #mobileResumoScreen .mobile-resumo-stack{
+    flex:1 1 auto!important;
+    min-height:0!important;
+    height:auto!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    padding:0!important;
+    margin:0!important;
+    overflow:visible!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="resumo"] #mobileResumoScreen .mobile-info-panel,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="resumo"] #mobileResumoScreen .mobile-resumo-panel{
+    width:100%!important;
+    max-width:460px!important;
+    margin:0 auto!important;
+    padding:20px 18px!important;
+    border-radius:22px!important;
+    box-sizing:border-box!important;
+    overflow:visible!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="resumo"] #mobileResumoScreen .mobile-info-panel h2{
+    font-size:19px!important;
+    line-height:1.1!important;
+    margin:0 0 16px!important;
+    letter-spacing:-.02em!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="resumo"] #mobileStandaloneSummary{
+    display:flex!important;
+    flex-direction:column!important;
+    gap:0!important;
+    height:auto!important;
+    max-height:none!important;
+    overflow:visible!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="resumo"] #mobileStandaloneSummary .summary-row{
+    min-height:52px!important;
+    height:52px!important;
+    max-height:52px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:14px!important;
+    padding:0!important;
+    margin:0!important;
+    border-bottom:1px solid rgba(226,232,240,.88)!important;
+    font-size:13px!important;
+    line-height:1.2!important;
+    box-sizing:border-box!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="resumo"] #mobileStandaloneSummary .summary-row span:first-child{
+    min-width:0!important;
+    color:var(--text)!important;
+    font-weight:800!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="resumo"] #mobileStandaloneSummary .summary-row span:last-child{
+    flex:0 0 auto!important;
+    text-align:right!important;
+    font-size:13.5px!important;
+    font-weight:900!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="resumo"] #mobileResumoScreen .mobile-detail-next{
+    position:absolute!important;
+    left:50%!important;
+    bottom:calc(env(safe-area-inset-bottom,0px) + 24px)!important;
+    transform:translateX(-50%)!important;
+    width:min(310px,82vw)!important;
+    height:52px!important;
+    margin:0!important;
+    z-index:160!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="resumo"] #mobileResumoScreen .mobile-detail-next:active{
+    transform:translateX(-50%) translateY(1px) scale(.99)!important;
+  }
+
+  /* Update active pointer target for the new screen. */
+  .mobile-app-shell[data-page="resumo"] #mobileResumoScreen{
+    pointer-events:auto!important;
+  }
+
+  /* Detail now returns to RESUMO. */
+  .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-arrow-prev{
+    pointer-events:auto!important;
+  }
+}
+
+@supports not (height: 100dvh){
+  @media (max-width: 820px){
+    .mobile-app-shell[data-page="resumo"] #mobileResumoScreen,
+    .mobile-app-shell[data-page="summary"] #mobileSummaryScreen{
+      height:100vh!important;
+      max-height:100vh!important;
+    }
+  }
+}
+
+
+/* MOBILE DETAIL FINAL: compact fixed columns, no logo on detail slide, table-only pinch zoom. Desktop unaffected. */
+@media (max-width: 820px){
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen.mobile-calc-screen::before,
+  #mobileDetailScreen.mobile-calc-screen::before{
+    content:none!important;
+    display:none!important;
+    visibility:hidden!important;
+    opacity:0!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen.mobile-calc-screen{
+    padding-top:calc(env(safe-area-inset-top,0px) + 36px)!important;
+    padding-left:10px!important;
+    padding-right:10px!important;
+    padding-bottom:calc(env(safe-area-inset-bottom,0px) + 10px)!important;
+    --mobile-table-zoom:1;
+    --mobile-section-base:48px;
+    --mobile-metric-base:112px;
+    --mobile-fixed-base:160px;
+    --mobile-period-base:68px;
+    --mobile-total-base:92px;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-detail-card{
+    width:100%!important;
+    height:calc(100dvh - 56px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))!important;
+    max-height:calc(100dvh - 56px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))!important;
+    margin:0!important;
+    padding:10px 0 0!important;
+    overflow:hidden!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-detail-card h2{
+    padding:0 10px!important;
+    margin:0 0 8px!important;
+    font-size:14px!important;
+    line-height:1.08!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-detail-scroll{
+    flex:1 1 auto!important;
+    min-height:0!important;
+    height:calc(100% - 25px)!important;
+    max-height:calc(100% - 25px)!important;
+    overflow:hidden!important;
+    touch-action:none!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-detail-split{
+    display:grid!important;
+    grid-template-columns:calc(var(--mobile-fixed-base) * var(--mobile-table-zoom)) minmax(0,1fr)!important;
+    width:100%!important;
+    height:100%!important;
+    min-width:0!important;
+    overflow:hidden!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-fixed-pane,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-fixed-table{
+    width:calc(var(--mobile-fixed-base) * var(--mobile-table-zoom))!important;
+    min-width:calc(var(--mobile-fixed-base) * var(--mobile-table-zoom))!important;
+    max-width:calc(var(--mobile-fixed-base) * var(--mobile-table-zoom))!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-col-section,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-section-cell,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-section-head{
+    width:calc(var(--mobile-section-base) * var(--mobile-table-zoom))!important;
+    min-width:calc(var(--mobile-section-base) * var(--mobile-table-zoom))!important;
+    max-width:calc(var(--mobile-section-base) * var(--mobile-table-zoom))!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-col-metric,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-metric-cell,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-metric-head{
+    width:calc(var(--mobile-metric-base) * var(--mobile-table-zoom))!important;
+    min-width:calc(var(--mobile-metric-base) * var(--mobile-table-zoom))!important;
+    max-width:calc(var(--mobile-metric-base) * var(--mobile-table-zoom))!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-months-pane{
+    width:calc(100vw - 20px - (var(--mobile-fixed-base) * var(--mobile-table-zoom)))!important;
+    max-width:calc(100vw - 20px - (var(--mobile-fixed-base) * var(--mobile-table-zoom)))!important;
+    min-width:0!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    -webkit-overflow-scrolling:touch!important;
+    touch-action:pan-x!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-fixed-table,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-months-table{
+    table-layout:fixed!important;
+    border-collapse:separate!important;
+    border-spacing:0!important;
+    font-size:calc(9.8px * var(--mobile-table-zoom))!important;
+    line-height:1.14!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-fixed-table th,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-fixed-table td,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-months-table th,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-months-table td{
+    height:var(--mobile-detail-row-h,30px)!important;
+    min-height:var(--mobile-detail-row-h,30px)!important;
+    max-height:var(--mobile-detail-row-h,30px)!important;
+    box-sizing:border-box!important;
+    vertical-align:middle!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-section-cell{
+    padding:3px 2px!important;
+  }
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-section-stacked{
+    gap:3px!important;
+  }
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-section-icon svg{
+    width:calc(15px * var(--mobile-table-zoom))!important;
+    height:calc(15px * var(--mobile-table-zoom))!important;
+  }
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-section-text{
+    max-width:calc(42px * var(--mobile-table-zoom))!important;
+    font-size:calc(5.7px * var(--mobile-table-zoom))!important;
+    line-height:1.04!important;
+    letter-spacing:0!important;
+  }
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-metric-cell{
+    padding:3px 5px!important;
+    font-size:calc(8.9px * var(--mobile-table-zoom))!important;
+    line-height:1.14!important;
+    white-space:normal!important;
+    overflow-wrap:break-word!important;
+  }
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-value-head,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-value-cell{
+    width:calc(var(--mobile-period-base) * var(--mobile-table-zoom))!important;
+    min-width:calc(var(--mobile-period-base) * var(--mobile-table-zoom))!important;
+    max-width:calc(var(--mobile-period-base) * var(--mobile-table-zoom))!important;
+    padding:3px 6px!important;
+    font-size:calc(9.6px * var(--mobile-table-zoom))!important;
+    line-height:1.1!important;
+  }
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-col-period{
+    width:calc(var(--mobile-period-base) * var(--mobile-table-zoom))!important;
+    min-width:calc(var(--mobile-period-base) * var(--mobile-table-zoom))!important;
+    max-width:calc(var(--mobile-period-base) * var(--mobile-table-zoom))!important;
+  }
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-col-total,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-total-cell{
+    width:calc(var(--mobile-total-base) * var(--mobile-table-zoom))!important;
+    min-width:calc(var(--mobile-total-base) * var(--mobile-table-zoom))!important;
+    max-width:calc(var(--mobile-total-base) * var(--mobile-table-zoom))!important;
+  }
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-months-table{
+    width:calc((var(--mobile-period-base) * var(--mobile-table-zoom) * 13) + (var(--mobile-total-base) * var(--mobile-table-zoom)))!important;
+    min-width:calc((var(--mobile-period-base) * var(--mobile-table-zoom) * 13) + (var(--mobile-total-base) * var(--mobile-table-zoom)))!important;
+  }
+}
+
+/* Mobile Screen 5: stable split-grid table so section groups and row values stay vertically aligned */
+@media (max-width: 768px){
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-fixed-table{display:none!important;}
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-fixed-grid{
+    display:grid!important;
+    grid-template-columns:calc(var(--mobile-section-base) * var(--mobile-table-zoom)) calc(var(--mobile-metric-base) * var(--mobile-table-zoom))!important;
+    grid-template-rows:var(--mobile-detail-row-h,30px) repeat(var(--mobile-detail-row-count), var(--mobile-detail-row-h,30px))!important;
+    width:calc(var(--mobile-fixed-base) * var(--mobile-table-zoom))!important;
+    min-width:calc(var(--mobile-fixed-base) * var(--mobile-table-zoom))!important;
+    max-width:calc(var(--mobile-fixed-base) * var(--mobile-table-zoom))!important;
+    height:auto!important;
+    border-collapse:separate!important;
+    font-size:calc(9.8px * var(--mobile-table-zoom))!important;
+    line-height:1.14!important;
+  }
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-fixed-header,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-fixed-grid .mobile-section-cell,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-fixed-grid .mobile-metric-cell{
+    box-sizing:border-box!important;
+    min-height:0!important;
+    height:100%!important;
+    border-right:1px solid #dce5ef!important;
+    border-bottom:1px solid #dce5ef!important;
+    display:flex!important;
+    align-items:center!important;
+    overflow:hidden!important;
+  }
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-fixed-header{
+    justify-content:center!important;
+    padding:3px 4px!important;
+    background:#f8fafc!important;
+    color:#102033!important;
+    font-size:calc(8.3px * var(--mobile-table-zoom))!important;
+    font-weight:950!important;
+    text-align:center!important;
+  }
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-fixed-grid .mobile-section-cell{
+    justify-content:center!important;
+    padding:3px 2px!important;
+  }
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-fixed-grid .mobile-metric-cell{
+    justify-content:flex-start!important;
+    padding:3px 5px!important;
+    font-size:calc(8.9px * var(--mobile-table-zoom))!important;
+    line-height:1.14!important;
+    font-weight:850!important;
+    white-space:normal!important;
+    overflow-wrap:break-word!important;
+  }
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-months-table thead th,
+  body:not(.city-start-mode) .mobile-app-shell[data-page="detail"] #mobileDetailScreen .mobile-months-table tbody td{
+    height:var(--mobile-detail-row-h,30px)!important;
+    min-height:var(--mobile-detail-row-h,30px)!important;
+    max-height:var(--mobile-detail-row-h,30px)!important;
+    box-sizing:border-box!important;
+    vertical-align:middle!important;
   }
 }

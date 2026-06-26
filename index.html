@@ -169,12 +169,19 @@
 
     <section id="mobileSummaryScreen" class="mobile-screen mobile-calc-screen" data-mobile-page="summary">
       <button class="mobile-arrow mobile-arrow-prev" type="button" data-mobile-page-target="chart" aria-label="Previous">↑</button>
-      <div class="mobile-summary-stack">
-        <div class="mobile-info-panel">
+      <div class="mobile-summary-stack mobile-insights-stack">
+        <div class="mobile-info-panel mobile-insights-panel">
           <h2 data-i18n="keyInsights">PRINCIPAIS INSIGHTS</h2>
           <div id="mobileStandaloneInsights"></div>
         </div>
-        <div class="mobile-info-panel">
+      </div>
+      <button class="mobile-arrow mobile-arrow-next" type="button" data-mobile-page-target="resumo" aria-label="Next">↓</button>
+    </section>
+
+    <section id="mobileResumoScreen" class="mobile-screen mobile-calc-screen" data-mobile-page="resumo">
+      <button class="mobile-arrow mobile-arrow-prev" type="button" data-mobile-page-target="summary" aria-label="Previous">↑</button>
+      <div class="mobile-summary-stack mobile-resumo-stack">
+        <div class="mobile-info-panel mobile-resumo-panel">
           <h2 data-i18n="summary12">RESUMO (12 MESES)</h2>
           <div id="mobileStandaloneSummary"></div>
         </div>
@@ -183,7 +190,7 @@
     </section>
 
     <section id="mobileDetailScreen" class="mobile-screen mobile-calc-screen" data-mobile-page="detail">
-      <button class="mobile-arrow mobile-arrow-prev" type="button" data-mobile-page-target="summary" aria-label="Previous">↑</button>
+      <button class="mobile-arrow mobile-arrow-prev" type="button" data-mobile-page-target="resumo" aria-label="Previous">↑</button>
       <div class="mobile-detail-card">
         <h2>Detalhamento mensal</h2>
         <div class="mobile-detail-scroll"><table id="mobileDetailTable" class="model-table mobile-detail-table"></table></div>
