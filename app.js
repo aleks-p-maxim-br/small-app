@@ -405,8 +405,8 @@ const App=(()=>{
       const screen=document.getElementById('mobileDetailScreen');
       const rows=host.querySelectorAll('.mobile-fixed-table tbody tr').length;
       if(screen&&rows){
-        const available=Math.max(300, window.innerHeight - 150);
-        const rowH=Math.max(18, Math.min(23, Math.floor(available / (rows + 1))));
+        const available=Math.max(360, window.innerHeight - 138);
+        const rowH=Math.max(24, Math.min(29, Math.floor(available / (rows + 1))));
         screen.style.setProperty('--mobile-detail-row-h', `${rowH}px`);
       }
     });

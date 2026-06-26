@@ -5748,3 +5748,329 @@ body.chart-modal-open{overflow:hidden!important;}
   }
   #dashboard .summary-row:last-child{border-bottom:0!important;}
 }
+
+/* Mobile Screen 1 final layout: larger city form and centered logo inside the form. Desktop unaffected. */
+@media (max-width: 820px){
+  body.city-start-mode #mobileStartScreen{
+    padding:calc(env(safe-area-inset-top,0px) + 16px) 17px calc(env(safe-area-inset-bottom,0px) + 16px)!important;
+    align-items:center!important;
+    justify-content:center!important;
+  }
+  body.city-start-mode #mobileStartScreen::before{
+    content:none!important;
+    display:none!important;
+  }
+  body.city-start-mode #mobileStartScreen .mobile-start-card{
+    width:min(calc(100vw - 34px), 430px)!important;
+    max-height:calc(100dvh - 34px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))!important;
+    padding:28px 22px 24px!important;
+    gap:17px!important;
+    border-radius:28px!important;
+    justify-content:center!important;
+    margin:0 auto!important;
+  }
+  body.city-start-mode #mobileStartScreen .mobile-start-card::before{
+    content:"";
+    display:block;
+    width:132px;
+    height:56px;
+    margin:0 auto 2px;
+    flex:0 0 auto;
+    background:url('assets/logo_nr.svg') center center / contain no-repeat;
+  }
+  body.city-start-mode #mobileStartScreen .mobile-start-title{
+    font-size:24px!important;
+    line-height:1.1!important;
+    margin:0 4px!important;
+    letter-spacing:-.035em!important;
+  }
+  body.city-start-mode #mobileStartScreen .mobile-start-subtitle{
+    font-size:13px!important;
+    line-height:1.45!important;
+    margin:0 4px 2px!important;
+  }
+  body.city-start-mode #mobileStartScreen .mobile-city-fields{
+    gap:14px!important;
+  }
+  body.city-start-mode #mobileStartScreen .mobile-field label{
+    font-size:11px!important;
+    margin-bottom:2px!important;
+  }
+  body.city-start-mode #mobileStartScreen .mobile-field select{
+    height:50px!important;
+    border-radius:15px!important;
+    font-size:15px!important;
+    padding:0 14px!important;
+  }
+  body.city-start-mode #mobileStartScreen .mobile-primary-btn{
+    height:52px!important;
+    border-radius:16px!important;
+    font-size:16px!important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE FINAL VIEWPORT FIX — Screen 4 Chrome + Screen 5 readable fit.
+   Mobile-only. Desktop/PC layout is not affected.
+   ========================================================= */
+@media (max-width: 820px){
+  /* Screen 4: guarantee all four insights + summary fit in Chrome mobile viewport. */
+  #mobileSummaryScreen.mobile-calc-screen{
+    padding-top:calc(env(safe-area-inset-top,0px) + 34px)!important;
+    padding-bottom:calc(env(safe-area-inset-bottom,0px) + 70px)!important;
+    overflow:hidden!important;
+  }
+  #mobileSummaryScreen .mobile-summary-stack{
+    height:calc(100dvh - 104px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))!important;
+    max-height:calc(100dvh - 104px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))!important;
+    grid-template-rows:minmax(0,0.56fr) minmax(0,0.44fr)!important;
+    gap:12px!important;
+    padding:0!important;
+    overflow:hidden!important;
+  }
+  #mobileSummaryScreen .mobile-info-panel{
+    padding:10px 13px!important;
+    min-height:0!important;
+    overflow:hidden!important;
+  }
+  #mobileSummaryScreen .mobile-info-panel h2{
+    font-size:13.5px!important;
+    line-height:1.05!important;
+    margin:0 0 6px!important;
+  }
+  #mobileSummaryScreen #mobileStandaloneInsights{
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:space-between!important;
+    min-height:0!important;
+    height:100%!important;
+    overflow:hidden!important;
+  }
+  #mobileSummaryScreen #mobileStandaloneInsights .insight{
+    grid-template-columns:26px minmax(0,1fr)!important;
+    gap:7px!important;
+    padding:4px 0!important;
+    min-height:0!important;
+  }
+  #mobileSummaryScreen #mobileStandaloneInsights .insight-badge{
+    width:23px!important;
+    height:23px!important;
+  }
+  #mobileSummaryScreen #mobileStandaloneInsights .insight-title{
+    font-size:10.5px!important;
+    line-height:1.05!important;
+    margin-bottom:0!important;
+  }
+  #mobileSummaryScreen #mobileStandaloneInsights .insight-text{
+    font-size:9.7px!important;
+    line-height:1.12!important;
+    display:block!important;
+    overflow:visible!important;
+  }
+  #mobileSummaryScreen #mobileStandaloneSummary .summary-row{
+    font-size:10.3px!important;
+    line-height:1.08!important;
+    padding:4px 0!important;
+  }
+
+  /* Screen 5: fit the table inside the viewport without making it unreadably tiny. */
+  #mobileDetailScreen.mobile-calc-screen{
+    padding-top:calc(env(safe-area-inset-top,0px) + 34px)!important;
+    padding-bottom:calc(env(safe-area-inset-bottom,0px) + 8px)!important;
+    overflow:hidden!important;
+  }
+  #mobileDetailScreen .mobile-detail-card{
+    height:calc(100dvh - 54px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))!important;
+    max-height:calc(100dvh - 54px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))!important;
+    margin:0!important;
+    padding:7px 8px 7px!important;
+    overflow:hidden!important;
+  }
+  #mobileDetailScreen .mobile-detail-card h2{
+    font-size:12.8px!important;
+    line-height:1.05!important;
+    margin:0 0 5px!important;
+    padding:0 3px!important;
+  }
+  #mobileDetailScreen .mobile-detail-scroll{
+    height:calc(100% - 19px)!important;
+    max-height:calc(100% - 19px)!important;
+    overflow:hidden!important;
+  }
+  #mobileDetailScreen .mobile-fixed-table th,
+  #mobileDetailScreen .mobile-fixed-table td,
+  #mobileDetailScreen .mobile-months-table th,
+  #mobileDetailScreen .mobile-months-table td{
+    height:var(--mobile-detail-row-h,26px)!important;
+    min-height:var(--mobile-detail-row-h,26px)!important;
+    max-height:var(--mobile-detail-row-h,26px)!important;
+    padding:2px 4px!important;
+    line-height:1.08!important;
+    vertical-align:middle!important;
+  }
+  #mobileDetailScreen .mobile-fixed-table thead th,
+  #mobileDetailScreen .mobile-months-table thead th{
+    height:24px!important;
+    min-height:24px!important;
+    max-height:24px!important;
+    padding:2px 4px!important;
+    font-size:8px!important;
+  }
+  #mobileDetailScreen .mobile-metric-cell{
+    font-size:7.8px!important;
+    line-height:1.08!important;
+  }
+  #mobileDetailScreen .mobile-value-head,
+  #mobileDetailScreen .mobile-value-cell{
+    font-size:8.7px!important;
+    line-height:1.08!important;
+  }
+  #mobileDetailScreen .mobile-section-text{
+    font-size:5.6px!important;
+    line-height:1.02!important;
+  }
+}
+
+@supports not (height: 100dvh){
+  @media (max-width: 820px){
+    #mobileSummaryScreen .mobile-summary-stack{height:calc(100vh - 104px)!important;max-height:calc(100vh - 104px)!important;}
+    #mobileDetailScreen .mobile-detail-card{height:calc(100vh - 54px)!important;max-height:calc(100vh - 54px)!important;}
+  }
+}
+
+/* =========================================================
+   MOBILE SCREEN 4 FINAL FIX — button is part of layout, not overlay.
+   Keeps PRINCIPAIS INSIGHTS and RESUMO readable and prevents overlap.
+   Desktop/PC layout is not affected.
+   ========================================================= */
+@media (max-width: 820px){
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    justify-content:flex-start!important;
+    gap:12px!important;
+    padding-top:calc(env(safe-area-inset-top,0px) + 42px)!important;
+    padding-right:16px!important;
+    padding-bottom:calc(env(safe-area-inset-bottom,0px) + 18px)!important;
+    padding-left:16px!important;
+    height:100dvh!important;
+    max-height:100dvh!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen .mobile-arrow-prev{
+    position:absolute!important;
+    top:calc(env(safe-area-inset-top,0px) + 8px)!important;
+    left:50%!important;
+    right:auto!important;
+    transform:translateX(-50%)!important;
+    margin:0!important;
+    z-index:190!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen .mobile-summary-stack{
+    flex:1 1 auto!important;
+    min-height:0!important;
+    height:auto!important;
+    max-height:none!important;
+    display:grid!important;
+    grid-template-rows:minmax(0,0.51fr) minmax(0,0.49fr)!important;
+    gap:14px!important;
+    padding:0!important;
+    margin:0!important;
+    overflow:hidden!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen .mobile-info-panel{
+    min-height:0!important;
+    max-height:none!important;
+    overflow:hidden!important;
+    padding:12px 13px!important;
+    border-radius:18px!important;
+    box-sizing:border-box!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen .mobile-info-panel h2{
+    margin:0 0 8px!important;
+    padding:0!important;
+    font-size:13.5px!important;
+    line-height:1.05!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights{
+    height:calc(100% - 24px)!important;
+    min-height:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:space-between!important;
+    gap:4px!important;
+    overflow:hidden!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights .insight{
+    grid-template-columns:27px minmax(0,1fr)!important;
+    gap:8px!important;
+    padding:3px 0!important;
+    min-height:0!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights .insight-title{
+    font-size:10.6px!important;
+    line-height:1.08!important;
+    margin:0!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneInsights .insight-text{
+    font-size:9.7px!important;
+    line-height:1.13!important;
+    margin:0!important;
+    display:block!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneSummary{
+    height:calc(100% - 24px)!important;
+    min-height:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:space-between!important;
+    overflow:hidden!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen #mobileStandaloneSummary .summary-row{
+    padding:4px 0!important;
+    font-size:10.3px!important;
+    line-height:1.08!important;
+    min-height:0!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen .mobile-detail-next{
+    position:static!important;
+    left:auto!important;
+    right:auto!important;
+    bottom:auto!important;
+    transform:none!important;
+    align-self:center!important;
+    flex:0 0 auto!important;
+    width:min(250px,78vw)!important;
+    min-width:0!important;
+    height:44px!important;
+    margin:4px auto 0!important;
+    z-index:1!important;
+  }
+
+  body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen .mobile-detail-next:active{
+    transform:translateY(1px) scale(.99)!important;
+  }
+}
+
+@supports not (height: 100dvh){
+  @media (max-width: 820px){
+    body:not(.city-start-mode) .mobile-app-shell[data-page="summary"] #mobileSummaryScreen{
+      height:100vh!important;
+      max-height:100vh!important;
+    }
+  }
+}
