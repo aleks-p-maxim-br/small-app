@@ -365,7 +365,9 @@ const App=(()=>{
     const host=document.querySelector('.mobile-detail-scroll');
     const srcTable=document.getElementById('modelTable');
     if(!host||!srcTable)return;
-    const headerCells=Array.from(srcTable.querySelectorAll('thead tr:last-child th')).map(th=>th.textContent.trim());
+    const headerThs=Array.from(srcTable.querySelectorAll('thead tr:last-child th'));
+    const headerCells=headerThs.map(th=>th.textContent.trim());
+    const periodBreakEven=(headerThs.length?headerThs.slice(2).map(th=>th.classList.contains('breakeven')):[]).concat(false);
     const periodHeaders=(headerCells.length?headerCells.slice(2):[]).concat(state.language==='pt-BR'?'Total':'Total');
     const groups=[];
     let currentGroup=null;
@@ -396,8 +398,8 @@ const App=(()=>{
       const sectionCell=idx===0 ? `<td class="mobile-section-cell ${group.sectionClass}" rowspan="${group.rows.length}"><div class="mobile-section-stacked"><span class="mobile-section-icon">${mobileSectionIcon(group.sectionClass)}</span><span class="mobile-section-text">${mobileSectionLabel(group.text).split('\n').map(x=>`<span>${x}</span>`).join('')}</span></div></td>` : '';
       return `<tr>${sectionCell}<td class="mobile-metric-cell ${group.sectionClass}">${row.metric}</td></tr>`;
     }).join('')).join('');
-    const scrollHeader=`<thead><tr>${periodHeaders.map((h,i)=>`<th class="mobile-value-head ${i===periodHeaders.length-1?'mobile-total-cell':''}">${h}</th>`).join('')}</tr></thead>`;
-    const scrollBody=groups.map(group=>group.rows.map(row=>`<tr>${row.values.map(v=>`<td class="mobile-value-cell">${v}</td>`).join('')}<td class="mobile-value-cell mobile-total-cell">${row.total}</td></tr>`).join('')).join('');
+    const scrollHeader=`<thead><tr>${periodHeaders.map((h,i)=>`<th class="mobile-value-head ${i===periodHeaders.length-1?'mobile-total-cell':''} ${periodBreakEven[i]?'mobile-breakeven':''}">${h}</th>`).join('')}</tr></thead>`;
+    const scrollBody=groups.map(group=>group.rows.map(row=>`<tr>${row.values.map((v,i)=>`<td class="mobile-value-cell ${periodBreakEven[i]?'mobile-breakeven':''}">${v}</td>`).join('')}<td class="mobile-value-cell mobile-total-cell">${row.total}</td></tr>`).join('')).join('');
     host.innerHTML=`<div class="mobile-detail-split"><div class="mobile-fixed-pane"><table class="mobile-fixed-table"><colgroup><col class="mobile-col-section"><col class="mobile-col-metric"></colgroup>${fixedHeader}<tbody>${fixedBody}</tbody></table></div><div class="mobile-months-pane"><table id="mobileDetailTable" class="mobile-months-table"><colgroup>${periodHeaders.map((_,i)=>`<col class="${i===periodHeaders.length-1?'mobile-col-total':'mobile-col-period'}">`).join('')}</colgroup>${scrollHeader}<tbody>${scrollBody}</tbody></table></div></div>`;
   }
 
@@ -473,6 +475,7 @@ const App=(()=>{
       if(Math.abs(dy)<55 || Math.abs(dy)<Math.abs(dx)*1.15)return;
       if(e.target.closest('.mobile-months-pane'))return;
       const page=(document.getElementById('mobileApp')?.dataset.page)||'kpi';
+      if(page==='detail'||e.target.closest('#mobileDetailScreen'))return;
       if(dy<0)mobileSetPage(mobileNextPage(page));
       else mobileSetPage(mobilePrevPage(page));
     },{passive:true});

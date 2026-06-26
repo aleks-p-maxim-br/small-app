@@ -28,11 +28,11 @@ const Charts=(()=>{
       data,
       borderColor:'#d92d20',
       backgroundColor:'#d92d20',
-      pointRadius:bestIndex>=0?4.5:0,
-      pointHoverRadius:6,
+      pointRadius:0,
+      pointHoverRadius:0,
       borderWidth:0,
       showLine:false,
-      hitRadius:8,
+      hitRadius:0,
       metaOnly:true
     };
   }
