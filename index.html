@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Calculadora de Modelo Financeiro Brasil</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <header class="topbar no-print topbar-compact">
+      <div class="app-brand app-brand-top"><img src="assets/logo_nr.svg" alt="NR" class="brand-logo" /></div>
+      <div id="topbarCityMeta" class="topbar-city-meta"></div>
+      <div class="actions-strip actions-strip-compact">
+        <div class="mobile-top-lang-switch" title="Language">
+          <span class="language-globe" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+          </span>
+          <span id="mobileTopLangFlag" class="language-flag" aria-hidden="true">🇧🇷</span>
+          <select id="mobileLanguageSelect" class="lang-select lang-select-icon" aria-label="Language">
+            <option value="pt-BR">PT-BR</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
+        <button id="changeCityBtn" class="btn secondary icon-btn" title="Change city" aria-label="Change city">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z"/>
+            <path d="M9 3v15"/>
+            <path d="M15 6v15"/>
+            <circle cx="15" cy="10" r="2.2"/>
+            <path d="M15 12.2c1.4-1.3 2.4-2.6 2.4-3.9A2.4 2.4 0 0 0 15 5.9a2.4 2.4 0 0 0-2.4 2.4c0 1.3 1 2.6 2.4 3.9z"/>
+          </svg>
+        </button>
+        <button id="exportPdf" class="btn secondary icon-btn" title="Export PDF" aria-label="Export PDF">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M9 14h6M9 17h4"/></svg>
+        </button>
+      </div>
+    </header>
+
+
+    <section id="startScreen" class="start-screen no-print">
+      <div class="start-card">
+        <div class="start-head">
+          <div class="start-brand-copy start-brand-centered">
+            <img src="assets/logo_nr.svg" alt="NR" class="start-logo" />
+            <div class="start-copy-text">
+              <h1 data-i18n="welcomeTitle">Select a city to calculate the financial model</h1>
+              <p data-i18n="welcomeSubtitle">Choose a Brazilian state and city from the available list. Population and initial payment will be applied automatically.</p>
+            </div>
+          </div>
+          <div class="start-lang-switch" title="Language">
+            <span class="language-globe" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+            </span>
+            <span id="startLangFlag" class="language-flag" aria-hidden="true">🇧🇷</span>
+            <select id="startLanguageSelect" class="lang-select lang-select-icon" aria-label="Language">
+              <option value="pt-BR">PT-BR</option>
+              <option value="en">EN</option>
+            </select>
+          </div>
+        </div>
+        <div class="city-picker-panel">
+          <div class="city-field">
+            <label for="startStateSelect" data-i18n="state">State</label>
+            <select id="startStateSelect"></select>
+          </div>
+          <div class="city-field">
+            <label for="startCitySelect" data-i18n="city">City</label>
+            <select id="startCitySelect"></select>
+          </div>
+          <button id="startCalculateBtn" class="btn primary start-calc-btn" data-i18n="calculate">Calculate</button>
+        </div>
+        <div class="city-table-card">
+          <div class="city-table-title" data-i18n="availableCities">Available cities</div>
+          <div class="city-table-wrap">
+            <table class="city-table" id="cityTable"></table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main id="dashboard" class="dashboard-card">
+      <section class="hero-row">
+        <div class="title-block title-block-branded">
+          <div class="dashboard-title-line"><div><h1 data-i18n="title">FINANCIAL MODEL</h1>
+          <p data-i18n="subtitle">12-Month Projection</p></div></div>
+          <div id="selectedCityBanner" class="selected-city-banner"></div>
+        </div>
+        <div class="kpi-grid" id="kpiGrid"></div>
+      </section>
+
+      <section class="main-grid">
+        <div class="model-column">
+          <div class="model-table-wrap">
+            <table class="model-table" id="modelTable"></table>
+          </div>
+        </div>
+        <aside class="sidebar">
+          <section class="side-card chart-card">
+            <div class="chart-card-head">
+              <h3 data-i18n="cashFlowOverview">CASH FLOW OVERVIEW</h3>
+              <button id="openChartModal" class="chart-expand-btn" type="button" title="Open large chart" aria-label="Open large chart">⤢</button>
+            </div>
+            <div class="chart-box" id="cashFlowChartBox">
+              <canvas id="cashFlowChart"></canvas>
+            </div>
+            <div id="chartLegendInline" class="chart-legend-inline chart-legend-below" aria-label="Chart series controls"></div>
+          </section>
+          <section class="side-card insights-card">
+            <h3 data-i18n="keyInsights">KEY INSIGHTS</h3>
+            <div id="insightsList"></div>
+          </section>
+          <section class="side-card summary-card scenario-notes-host">
+            <h3><span data-i18n="summary12">SUMMARY (12 MONTHS)</span><button class="notes-info" type="button" aria-label="Scenario notes">ⓘ</button></h3>
+            <div id="summaryList"></div>
+            <div class="notes-popover">
+              <div class="notes-popover-title" data-i18n="notes">NOTES</div>
+              <textarea id="notesArea" spellcheck="true"></textarea>
+            </div>
+          </section>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+
+  <section id="mobileApp" class="mobile-app-shell" aria-label="Mobile Small App">
+    <section id="mobileStartScreen" class="mobile-screen mobile-start-only">
+      <button id="mobileStartLanguageButton" class="mobile-language-pill" type="button" aria-label="Language"><span id="mobileStartLanguageFlag">🇧🇷</span><span id="mobileStartLanguageText">PT-BR</span></button>
+      <div class="mobile-start-card">
+        <div class="mobile-start-title" data-i18n="welcomeTitle">Select a city to calculate the financial model</div>
+        <div class="mobile-start-subtitle" data-i18n="welcomeSubtitle">Choose a Brazilian state and city from the available list. Population and initial payment will be applied automatically.</div>
+        <div class="mobile-city-fields">
+          <div class="mobile-field">
+            <label for="mobileStateSelect" data-i18n="state">State</label>
+            <select id="mobileStateSelect"></select>
+          </div>
+          <div class="mobile-field">
+            <label for="mobileCitySelect" data-i18n="city">City</label>
+            <select id="mobileCitySelect"></select>
+          </div>
+          <button id="mobileCalculateBtn" class="mobile-primary-btn" type="button" data-i18n="calculate">Calculate</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="mobileKpiScreen" class="mobile-screen mobile-calc-screen" data-mobile-page="kpi">
+      <div class="mobile-screen-actions">
+        <button id="mobileChangeCityBtn" class="mobile-icon-action" type="button" aria-label="Change city">⌂</button>
+        <button id="mobileExportPdfBtn" class="mobile-icon-action" type="button" aria-label="Export PDF">⇩</button>
+      </div>
+      <div id="mobileKpiContent" class="mobile-kpi-content"></div>
+      <button class="mobile-arrow mobile-arrow-next" type="button" data-mobile-page-target="chart" aria-label="Next">↓</button>
+    </section>
+
+    <section id="mobileChartScreen" class="mobile-screen mobile-calc-screen" data-mobile-page="chart">
+      <button class="mobile-arrow mobile-arrow-prev" type="button" data-mobile-page-target="kpi" aria-label="Previous">↑</button>
+      <div class="mobile-chart-card">
+        <h2 data-i18n="cashFlowOverview">VISÃO GERAL DO FLUXO DE CAIXA</h2>
+        <div class="mobile-chart-box"><canvas id="mobileCashFlowChart"></canvas></div>
+        <div id="mobileChartLegend" class="mobile-chart-legend"></div>
+      </div>
+      <button class="mobile-arrow mobile-arrow-next" type="button" data-mobile-page-target="summary" aria-label="Next">↓</button>
+    </section>
+
+    <section id="mobileSummaryScreen" class="mobile-screen mobile-calc-screen" data-mobile-page="summary">
+      <button class="mobile-arrow mobile-arrow-prev" type="button" data-mobile-page-target="chart" aria-label="Previous">↑</button>
+      <div class="mobile-summary-stack">
+        <div class="mobile-info-panel">
+          <h2 data-i18n="keyInsights">PRINCIPAIS INSIGHTS</h2>
+          <div id="mobileStandaloneInsights"></div>
+        </div>
+        <div class="mobile-info-panel">
+          <h2 data-i18n="summary12">RESUMO (12 MESES)</h2>
+          <div id="mobileStandaloneSummary"></div>
+        </div>
+      </div>
+      <button class="mobile-detail-next" type="button" data-mobile-page-target="detail">Mostrar detalhamento</button>
+    </section>
+
+    <section id="mobileDetailScreen" class="mobile-screen mobile-calc-screen" data-mobile-page="detail">
+      <button class="mobile-arrow mobile-arrow-prev" type="button" data-mobile-page-target="summary" aria-label="Previous">↑</button>
+      <div class="mobile-detail-card">
+        <h2>Detalhamento mensal</h2>
+        <div class="mobile-detail-scroll"><table id="mobileDetailTable" class="model-table mobile-detail-table"></table></div>
+      </div>
+    </section>
+  </section>
+
+  <div class="chart-modal" id="chartModal" hidden aria-hidden="true">
+    <div class="chart-modal-backdrop" data-close-chart-modal></div>
+    <div class="chart-modal-panel" role="dialog" aria-modal="true" aria-labelledby="chartModalTitle">
+      <div class="chart-modal-head">
+        <div>
+          <h2 id="chartModalTitle" data-i18n="cashFlowOverview">CASH FLOW OVERVIEW</h2>
+          <p data-i18n="chartSubtitle">Monthly partner net profit and accumulated result</p>
+        </div>
+        <button class="chart-modal-close" type="button" data-close-chart-modal aria-label="Close">×</button>
+      </div>
+      <div class="chart-modal-box">
+        <canvas id="cashFlowChartLarge"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script src="localization.js"></script>
+  <script src="cities.js"></script>
+  <script src="validation.js"></script>
+  <script src="storage.js"></script>
+  <script src="financial-engine.js"></script>
+  <script src="scenario-manager.js"></script>
+  <script src="animation.js"></script>
+  <script src="charts.js"></script>
+  <script src="export.js"></script>
+  <script src="ui-renderer.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
