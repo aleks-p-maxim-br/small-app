@@ -47,8 +47,7 @@ const Charts=(()=>{
       type:'line',
       data:{labels,datasets:[
         {label:Localization.t('monthlyNetProfit'),data:net,borderColor:'#6fa053',backgroundColor:'rgba(111,160,83,.10)',tension:.32,pointRadius:2.8,pointHoverRadius:5,borderWidth:2.2,fill:false},
-        {label:Localization.t('accumulatedNetProfit'),data:accumulated,borderColor:'#173b63',backgroundColor:'rgba(23,59,99,.10)',tension:.32,pointRadius:2.8,pointHoverRadius:5,borderWidth:2.4,fill:false},
-        buildIntersectionDataset(net,accumulated)
+        {label:Localization.t('accumulatedNetProfit'),data:accumulated,borderColor:'#173b63',backgroundColor:'rgba(23,59,99,.10)',tension:.32,pointRadius:2.8,pointHoverRadius:5,borderWidth:2.4,fill:false}
       ]},
       options:{
         responsive:true,

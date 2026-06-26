@@ -4952,3 +4952,134 @@ body.chart-modal-open{overflow:hidden!important;}
     font-size:calc(9.2px * var(--mobile-table-zoom))!important;
   }
 }
+
+/* Desktop detail table section cells: icon above label, larger icon */
+@media (min-width: 769px){
+  #dashboard .model-table .section-name{
+    text-align:center!important;
+    vertical-align:middle!important;
+    padding:8px 6px!important;
+  }
+  #dashboard .model-table .section-title-wrap{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:7px!important;
+    width:100%!important;
+    height:100%!important;
+    min-height:100%!important;
+  }
+  #dashboard .model-table .section-title-wrap .section-badge{
+    flex:0 0 32px!important;
+    width:32px!important;
+    height:32px!important;
+    border-radius:10px!important;
+    display:grid!important;
+    place-items:center!important;
+  }
+  #dashboard .model-table .section-title-wrap .section-badge svg{
+    width:20px!important;
+    height:20px!important;
+    stroke-width:2!important;
+  }
+  #dashboard .model-table .section-title-wrap .section-text{
+    display:block!important;
+    width:100%!important;
+    text-align:center!important;
+    font-size:10.2px!important;
+    line-height:1.12!important;
+    letter-spacing:.015em!important;
+    font-weight:900!important;
+  }
+}
+
+
+/* Final polish: desktop section labels + mobile logo and compact chart. */
+@media (min-width: 769px){
+  #dashboard .model-table .section-name{
+    text-align:center!important;
+    vertical-align:middle!important;
+    padding:6px 5px!important;
+  }
+  #dashboard .model-table .section-title-wrap{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:5px!important;
+    width:100%!important;
+    height:100%!important;
+    min-height:100%!important;
+  }
+  #dashboard .model-table .section-title-wrap .section-badge{
+    width:34px!important;
+    height:34px!important;
+    min-width:34px!important;
+    min-height:34px!important;
+    border-radius:10px!important;
+    display:grid!important;
+    place-items:center!important;
+    margin:0 auto!important;
+    flex:0 0 auto!important;
+  }
+  #dashboard .model-table .section-title-wrap .section-badge svg{
+    width:22px!important;
+    height:22px!important;
+    display:block!important;
+  }
+  #dashboard .model-table .section-title-wrap .section-text{
+    display:block!important;
+    max-width:112px!important;
+    margin:0 auto!important;
+    text-align:center!important;
+    white-space:normal!important;
+    overflow-wrap:normal!important;
+    word-break:normal!important;
+    hyphens:none!important;
+    font-size:8.8px!important;
+    line-height:1.08!important;
+    letter-spacing:.01em!important;
+    font-weight:900!important;
+    text-transform:uppercase!important;
+  }
+}
+
+@media (max-width: 768px){
+  body:not(.city-start-mode) .mobile-calc-screen::before{
+    content:"";
+    position:absolute;
+    left:calc(env(safe-area-inset-left,0px) + 16px);
+    top:calc(env(safe-area-inset-top,0px) + 12px);
+    width:54px;
+    height:24px;
+    background:url('assets/logo_nr.svg') left center / contain no-repeat;
+    z-index:45;
+    pointer-events:none;
+  }
+  body:not(.city-start-mode) .mobile-screen-actions{
+    top:calc(env(safe-area-inset-top,0px) + 10px)!important;
+  }
+  #mobileChartScreen.mobile-calc-screen{
+    justify-content:center!important;
+    gap:10px!important;
+  }
+  #mobileChartScreen .mobile-chart-card{
+    height:min(66dvh, 500px)!important;
+    max-height:500px!important;
+    flex:0 0 auto!important;
+    margin:0!important;
+    padding:14px 12px 10px!important;
+  }
+  #mobileChartScreen .mobile-chart-box{
+    flex:1 1 auto!important;
+    min-height:220px!important;
+    max-height:360px!important;
+  }
+  #mobileChartScreen .mobile-chart-card h2{
+    margin-bottom:8px!important;
+  }
+  #mobileChartScreen .mobile-chart-legend{
+    padding-top:5px!important;
+  }
+}
