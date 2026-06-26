@@ -5222,3 +5222,40 @@ body.chart-modal-open{overflow:hidden!important;}
     #mobileDetailScreen .mobile-detail-scroll{height:calc(100vh - 138px)!important;max-height:calc(100vh - 138px)!important;}
   }
 }
+
+
+/* BR final correction: summary expense value only + mobile start logo + city list update. */
+.summary-row.summary-expense-row,
+.summary-row.summary-expense-row span,
+#mobileStandaloneSummary .summary-row.summary-expense-row,
+#mobileStandaloneSummary .summary-row.summary-expense-row span,
+#mobileSummaryList .summary-row.summary-expense-row,
+#mobileSummaryList .summary-row.summary-expense-row span{
+  color:inherit!important;
+}
+.summary-row.summary-expense-row span:last-child,
+#mobileStandaloneSummary .summary-row.summary-expense-row span:last-child,
+#mobileSummaryList .summary-row.summary-expense-row span:last-child{
+  color:var(--red2)!important;
+  font-weight:900!important;
+}
+
+@media (max-width: 768px){
+  body.city-start-mode #mobileStartScreen::before{
+    content:"";
+    position:fixed;
+    left:calc(env(safe-area-inset-left,0px) + 16px);
+    top:calc(env(safe-area-inset-top,0px) + 14px);
+    width:78px;
+    height:36px;
+    background:url('assets/logo_nr.svg') left center / contain no-repeat;
+    z-index:80;
+    pointer-events:none;
+  }
+  body.city-start-mode #mobileStartScreen{
+    padding-top:calc(env(safe-area-inset-top,0px) + 58px)!important;
+  }
+  body.city-start-mode #mobileStartScreen .mobile-start-card{
+    margin-top:0!important;
+  }
+}
