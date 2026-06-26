@@ -5259,3 +5259,492 @@ body.chart-modal-open{overflow:hidden!important;}
     margin-top:0!important;
   }
 }
+
+/* Final mobile viewport fixes: Screen 4 Chrome-safe content, Screen 5 full-height readable table. Desktop unaffected. */
+@media (max-width: 820px){
+  /* Screen 4: keep all insight rows visible in Chrome mobile. */
+  #mobileSummaryScreen.mobile-calc-screen{
+    padding-top:calc(env(safe-area-inset-top,0px) + 42px)!important;
+    padding-bottom:calc(env(safe-area-inset-bottom,0px) + 58px)!important;
+    justify-content:center!important;
+  }
+  #mobileSummaryScreen .mobile-summary-stack{
+    height:calc(100dvh - 112px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))!important;
+    max-height:calc(100dvh - 112px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))!important;
+    padding:0!important;
+    gap:14px!important;
+    display:grid!important;
+    grid-template-rows:minmax(0,0.52fr) minmax(0,0.48fr)!important;
+    overflow:hidden!important;
+  }
+  #mobileSummaryScreen .mobile-info-panel{
+    min-height:0!important;
+    height:100%!important;
+    overflow:hidden!important;
+    padding:12px 14px!important;
+    border-radius:20px!important;
+    justify-content:flex-start!important;
+  }
+  #mobileSummaryScreen .mobile-info-panel h2{
+    font-size:14px!important;
+    line-height:1.05!important;
+    margin:0 0 8px!important;
+    flex:0 0 auto!important;
+  }
+  #mobileSummaryScreen #mobileStandaloneInsights{
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:space-between!important;
+    gap:0!important;
+    min-height:0!important;
+    flex:1 1 auto!important;
+  }
+  #mobileSummaryScreen #mobileStandaloneInsights .insight{
+    grid-template-columns:28px minmax(0,1fr)!important;
+    gap:8px!important;
+    padding:5px 0!important;
+    min-height:0!important;
+  }
+  #mobileSummaryScreen #mobileStandaloneInsights .insight-badge{
+    width:25px!important;
+    height:25px!important;
+  }
+  #mobileSummaryScreen #mobileStandaloneInsights .insight-title{
+    font-size:10.8px!important;
+    line-height:1.06!important;
+    margin-bottom:1px!important;
+  }
+  #mobileSummaryScreen #mobileStandaloneInsights .insight-text{
+    font-size:10px!important;
+    line-height:1.14!important;
+    white-space:normal!important;
+    overflow-wrap:break-word!important;
+  }
+  #mobileSummaryScreen #mobileStandaloneSummary{
+    min-height:0!important;
+    flex:1 1 auto!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:space-between!important;
+  }
+  #mobileSummaryScreen #mobileStandaloneSummary .summary-row{
+    font-size:10.7px!important;
+    line-height:1.08!important;
+    padding:5px 0!important;
+    min-height:0!important;
+    gap:8px!important;
+  }
+  #mobileSummaryScreen #mobileStandaloneSummary .summary-row span:first-child{
+    max-width:62%!important;
+  }
+  #mobileSummaryScreen #mobileStandaloneSummary .summary-row span:last-child{
+    max-width:38%!important;
+  }
+
+  /* Screen 5: table must fit inside the device viewport and keep fixed/scroll rows aligned. */
+  #mobileDetailScreen.mobile-calc-screen{
+    padding-top:calc(env(safe-area-inset-top,0px) + 36px)!important;
+    padding-bottom:calc(env(safe-area-inset-bottom,0px) + 10px)!important;
+    justify-content:center!important;
+  }
+  #mobileDetailScreen .mobile-arrow-prev{
+    top:calc(env(safe-area-inset-top,0px) + 2px)!important;
+  }
+  #mobileDetailScreen .mobile-detail-card{
+    height:calc(100dvh - 58px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))!important;
+    max-height:calc(100dvh - 58px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))!important;
+    margin:0!important;
+    padding:8px 8px 8px!important;
+    border-radius:20px!important;
+    overflow:hidden!important;
+  }
+  #mobileDetailScreen .mobile-detail-card h2{
+    font-size:13px!important;
+    line-height:1.05!important;
+    margin:0 0 6px!important;
+    padding:0 4px!important;
+    flex:0 0 auto!important;
+  }
+  #mobileDetailScreen .mobile-detail-scroll{
+    height:calc(100% - 22px)!important;
+    max-height:calc(100% - 22px)!important;
+    min-height:0!important;
+    overflow:hidden!important;
+  }
+  #mobileDetailScreen .mobile-detail-split,
+  #mobileDetailScreen .mobile-fixed-pane,
+  #mobileDetailScreen .mobile-months-pane{
+    height:100%!important;
+    max-height:100%!important;
+    min-height:0!important;
+  }
+  #mobileDetailScreen .mobile-fixed-table,
+  #mobileDetailScreen .mobile-months-table{
+    height:auto!important;
+    border-collapse:separate!important;
+    border-spacing:0!important;
+  }
+  #mobileDetailScreen .mobile-fixed-table thead th,
+  #mobileDetailScreen .mobile-months-table thead th{
+    height:var(--mobile-detail-row-h,20px)!important;
+    min-height:var(--mobile-detail-row-h,20px)!important;
+    max-height:var(--mobile-detail-row-h,20px)!important;
+    padding:1px 3px!important;
+    font-size:7.8px!important;
+    line-height:1!important;
+  }
+  #mobileDetailScreen .mobile-fixed-table tbody td,
+  #mobileDetailScreen .mobile-months-table tbody td{
+    height:var(--mobile-detail-row-h,20px)!important;
+    min-height:var(--mobile-detail-row-h,20px)!important;
+    max-height:var(--mobile-detail-row-h,20px)!important;
+    padding:1px 3px!important;
+    line-height:1.02!important;
+    vertical-align:middle!important;
+    overflow:hidden!important;
+  }
+  #mobileDetailScreen .mobile-section-cell{
+    padding:2px 1px!important;
+  }
+  #mobileDetailScreen .mobile-section-stacked{
+    gap:1px!important;
+  }
+  #mobileDetailScreen .mobile-section-icon svg{
+    width:12px!important;
+    height:12px!important;
+  }
+  #mobileDetailScreen .mobile-section-text{
+    font-size:5.2px!important;
+    line-height:1!important;
+    max-width:44px!important;
+  }
+  #mobileDetailScreen .mobile-metric-cell{
+    font-size:7.1px!important;
+    line-height:1.02!important;
+    overflow-wrap:anywhere!important;
+    white-space:normal!important;
+  }
+  #mobileDetailScreen .mobile-value-head,
+  #mobileDetailScreen .mobile-value-cell{
+    font-size:7.9px!important;
+    line-height:1.02!important;
+  }
+}
+
+@supports not (height: 100dvh){
+  @media (max-width: 820px){
+    #mobileSummaryScreen .mobile-summary-stack{height:calc(100vh - 112px)!important;max-height:calc(100vh - 112px)!important;}
+    #mobileDetailScreen .mobile-detail-card{height:calc(100vh - 58px)!important;max-height:calc(100vh - 58px)!important;}
+  }
+}
+
+/* FINAL SUMMARY + DISCLAIMER + DESKTOP SCALE PATCH */
+.summary-row.summary-investment-row span:first-child,
+.summary-row.summary-expense-row span:first-child,
+#mobileStandaloneSummary .summary-row.summary-investment-row span:first-child,
+#mobileStandaloneSummary .summary-row.summary-expense-row span:first-child,
+#mobileSummaryList .summary-row.summary-investment-row span:first-child,
+#mobileSummaryList .summary-row.summary-expense-row span:first-child{
+  color:var(--text)!important;
+}
+.summary-row.summary-investment-row span:last-child,
+.summary-row.summary-expense-row span:last-child,
+#mobileStandaloneSummary .summary-row.summary-investment-row span:last-child,
+#mobileStandaloneSummary .summary-row.summary-expense-row span:last-child,
+#mobileSummaryList .summary-row.summary-investment-row span:last-child,
+#mobileSummaryList .summary-row.summary-expense-row span:last-child{
+  color:var(--red2)!important;
+}
+.scenario-notes-host:hover .notes-popover,
+.scenario-notes-host:focus-within .notes-popover{display:none!important;}
+.scenario-notes-host.notes-open .notes-popover{display:block!important;}
+/* Desktop fit-to-viewport correction: keep the calculator inside one browser screen.
+   The previous 110% zoom made the desktop sheet wider than the viewport and caused
+   horizontal scrolling. Desktop dimensions are now controlled by the grid/table rules
+   above, while the shell itself stays at 100% viewport width. */
+@media (min-width:821px){
+  .app-shell{
+    zoom:1!important;
+    width:100vw!important;
+    max-width:100vw!important;
+    overflow:hidden!important;
+  }
+  html,body{overflow-x:hidden!important;}
+  #dashboard{max-width:100%!important;overflow:hidden!important;}
+}
+
+/* =========================================================
+   FINAL DESKTOP OPEN VIEW FIT
+   Keeps the desktop calculator in one browser screen on load, matching the
+   approved reference: large readable table, preserved orientation, no page scroll.
+   Mobile layout remains isolated by max-width media rules below and is not affected.
+   ========================================================= */
+@media (min-width:821px){
+  html,
+  body{
+    width:100%!important;
+    height:100%!important;
+    overflow:hidden!important;
+    background:#f2f4f7!important;
+  }
+  body:not(.city-start-mode){
+    min-width:0!important;
+  }
+  body:not(.city-start-mode) .app-shell{
+    width:100vw!important;
+    max-width:100vw!important;
+    min-width:0!important;
+    height:100vh!important;
+    max-height:100vh!important;
+    margin:0!important;
+    padding:7px 7px 6px!important;
+    overflow:hidden!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:0!important;
+    zoom:1!important;
+    transform:none!important;
+  }
+  body:not(.city-start-mode) .topbar{
+    height:52px!important;
+    min-height:52px!important;
+    flex:0 0 52px!important;
+    margin:0 0 6px!important;
+    padding:0 14px!important;
+    display:flex!important;
+    align-items:center!important;
+  }
+  body:not(.city-start-mode) .brand-logo{
+    height:38px!important;
+    width:auto!important;
+  }
+  body:not(.city-start-mode) .dashboard-card#dashboard{
+    flex:1 1 auto!important;
+    min-height:0!important;
+    height:auto!important;
+    max-height:calc(100vh - 65px)!important;
+    padding:8px!important;
+    overflow:hidden!important;
+    display:flex!important;
+    flex-direction:column!important;
+    border-radius:5px!important;
+  }
+  #dashboard .hero-row{
+    flex:0 0 auto!important;
+    display:block!important;
+    margin:0 0 8px!important;
+  }
+  #dashboard .kpi-grid{
+    --br-chart-width:315px!important;
+    --br-grid-gap:8px!important;
+    --br-section-width:150px!important;
+    --br-metric-width:250px!important;
+    --br-label-width:calc(var(--br-section-width) + var(--br-metric-width))!important;
+    display:grid!important;
+    grid-template-columns:var(--br-label-width) repeat(3,minmax(0,1fr)) var(--br-chart-width)!important;
+    grid-template-areas:"city investment breakeven profit roi"!important;
+    gap:var(--br-grid-gap)!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    align-items:stretch!important;
+  }
+  #dashboard .kpi-grid > .kpi-card{
+    height:82px!important;
+    min-height:82px!important;
+    max-height:82px!important;
+    padding:10px 13px!important;
+    min-width:0!important;
+    max-width:none!important;
+    width:100%!important;
+    box-sizing:border-box!important;
+  }
+  #dashboard .kpi-grid > .city-context-card{grid-area:city!important;}
+  #dashboard .kpi-grid > .kpi-initialInvestment{grid-area:investment!important;}
+  #dashboard .kpi-grid > .kpi-breakEven{grid-area:breakeven!important;}
+  #dashboard .kpi-grid > .kpi-yearProfit{grid-area:profit!important;}
+  #dashboard .kpi-grid > .kpi-roi12{grid-area:roi!important;}
+  #dashboard .kpi-icon{font-size:30px!important;}
+  #dashboard .kpi-card:not(.city-context-card) .kpi-icon svg,
+  #dashboard .city-context-card .kpi-icon svg{
+    width:23px!important;
+    height:23px!important;
+  }
+  #dashboard .kpi-label{
+    font-size:10.3px!important;
+    line-height:1.1!important;
+    margin-bottom:3px!important;
+  }
+  #dashboard .kpi-value{
+    font-size:22px!important;
+    line-height:1.05!important;
+    letter-spacing:-.35px!important;
+  }
+  #dashboard .city-context-name{
+    font-size:15px!important;
+    line-height:1.08!important;
+    max-height:34px!important;
+  }
+  #dashboard .city-context-meta{
+    font-size:9.2px!important;
+    line-height:1.12!important;
+  }
+  #dashboard .main-grid{
+    flex:1 1 auto!important;
+    min-height:0!important;
+    height:auto!important;
+    display:grid!important;
+    grid-template-columns:calc(100% - var(--br-chart-width) - var(--br-grid-gap)) var(--br-chart-width)!important;
+    gap:var(--br-grid-gap)!important;
+    align-items:stretch!important;
+    width:100%!important;
+    max-width:100%!important;
+    overflow:hidden!important;
+  }
+  #dashboard .model-column,
+  #dashboard .model-table-wrap{
+    min-width:0!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-height:0!important;
+    height:100%!important;
+    overflow:hidden!important;
+  }
+  #dashboard .model-table{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    table-layout:fixed!important;
+    border-collapse:separate!important;
+    --desktop-row-h:clamp(24px,calc((100vh - 305px) / 17),31px);
+    font-size:clamp(9.2px,.58vw,10.7px)!important;
+  }
+  #dashboard .model-table col.col-section{width:var(--br-section-width)!important;}
+  #dashboard .model-table col.col-metric{width:var(--br-metric-width)!important;}
+  #dashboard .model-table col.col-period{width:auto!important;}
+  #dashboard .model-table th,
+  #dashboard .model-table td{
+    height:var(--desktop-row-h)!important;
+    min-height:var(--desktop-row-h)!important;
+    padding:4px 6px!important;
+    line-height:1.16!important;
+    vertical-align:middle!important;
+  }
+  #dashboard .model-table thead th{
+    height:calc(var(--desktop-row-h) - 2px)!important;
+    min-height:calc(var(--desktop-row-h) - 2px)!important;
+    font-size:clamp(8.4px,.52vw,9.6px)!important;
+    padding:3px 4px!important;
+  }
+  #dashboard .model-table thead .phase th{
+    height:18px!important;
+    min-height:18px!important;
+    font-size:8.4px!important;
+    padding:2px 4px!important;
+  }
+  #dashboard .model-table tbody td{
+    font-size:clamp(9.2px,.58vw,10.7px)!important;
+  }
+  #dashboard .model-table .metric-name{
+    font-size:clamp(9.1px,.57vw,10.5px)!important;
+    line-height:1.16!important;
+    padding-left:10px!important;
+    padding-right:8px!important;
+  }
+  #dashboard .model-table .section-name{
+    font-size:clamp(8.4px,.50vw,9.7px)!important;
+    line-height:1.08!important;
+    padding:4px 6px!important;
+    text-align:center!important;
+  }
+  #dashboard .model-table tr:has(.section-name) td{
+    border-top-width:7px!important;
+  }
+  #dashboard .model-table tbody tr:first-child td{
+    border-top-width:1px!important;
+  }
+  #dashboard .section-title-wrap{
+    gap:5px!important;
+  }
+  #dashboard .section-badge{
+    width:34px!important;
+    height:34px!important;
+    min-width:34px!important;
+    border-radius:10px!important;
+  }
+  #dashboard .section-badge svg{
+    width:21px!important;
+    height:21px!important;
+  }
+  #dashboard .section-text{
+    font-size:9px!important;
+    line-height:1.05!important;
+    letter-spacing:-.15px!important;
+  }
+  #dashboard .sidebar{
+    height:100%!important;
+    min-height:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:8px!important;
+    overflow:hidden!important;
+  }
+  #dashboard .side-card,
+  #dashboard .bottom-card{
+    min-height:0!important;
+  }
+  #dashboard .chart-card{
+    flex:0 0 33%!important;
+    max-height:none!important;
+    display:flex!important;
+    flex-direction:column!important;
+  }
+  #dashboard .chart-box{
+    flex:1 1 auto!important;
+    height:auto!important;
+    max-height:none!important;
+    min-height:0!important;
+    padding:6px 8px 2px!important;
+  }
+  #dashboard .chart-box canvas{
+    width:100%!important;
+    height:100%!important;
+    padding:0!important;
+  }
+  #dashboard .insights-card{
+    flex:0 0 25.5%!important;
+    display:flex!important;
+    flex-direction:column!important;
+  }
+  #dashboard .insights-card #insightsList{
+    flex:1 1 auto!important;
+    min-height:0!important;
+  }
+  #dashboard .summary-card{
+    flex:1 1 auto!important;
+    min-height:0!important;
+  }
+  #dashboard .side-card h3,
+  #dashboard .bottom-card h3{
+    padding:6px 9px!important;
+    font-size:9.5px!important;
+  }
+  #dashboard .insight{
+    grid-template-columns:28px 1fr!important;
+    gap:7px!important;
+    padding:6px 9px!important;
+  }
+  #dashboard .insight-badge{
+    width:24px!important;
+    height:24px!important;
+    font-size:14px!important;
+  }
+  #dashboard .insight-title{font-size:9.7px!important;line-height:1.1!important;}
+  #dashboard .insight-text{font-size:8.7px!important;line-height:1.18!important;}
+  #dashboard .summary-row{
+    padding:5px 9px!important;
+    font-size:9.3px!important;
+    line-height:1.15!important;
+  }
+  #dashboard .summary-row:last-child{border-bottom:0!important;}
+}

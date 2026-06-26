@@ -401,6 +401,15 @@ const App=(()=>{
     const scrollHeader=`<thead><tr>${periodHeaders.map((h,i)=>`<th class="mobile-value-head ${i===periodHeaders.length-1?'mobile-total-cell':''} ${periodBreakEven[i]?'mobile-breakeven':''}">${h}</th>`).join('')}</tr></thead>`;
     const scrollBody=groups.map(group=>group.rows.map(row=>`<tr>${row.values.map((v,i)=>`<td class="mobile-value-cell ${periodBreakEven[i]?'mobile-breakeven':''}">${v}</td>`).join('')}<td class="mobile-value-cell mobile-total-cell">${row.total}</td></tr>`).join('')).join('');
     host.innerHTML=`<div class="mobile-detail-split"><div class="mobile-fixed-pane"><table class="mobile-fixed-table"><colgroup><col class="mobile-col-section"><col class="mobile-col-metric"></colgroup>${fixedHeader}<tbody>${fixedBody}</tbody></table></div><div class="mobile-months-pane"><table id="mobileDetailTable" class="mobile-months-table"><colgroup>${periodHeaders.map((_,i)=>`<col class="${i===periodHeaders.length-1?'mobile-col-total':'mobile-col-period'}">`).join('')}</colgroup>${scrollHeader}<tbody>${scrollBody}</tbody></table></div></div>`;
+    requestAnimationFrame(()=>{
+      const screen=document.getElementById('mobileDetailScreen');
+      const rows=host.querySelectorAll('.mobile-fixed-table tbody tr').length;
+      if(screen&&rows){
+        const available=Math.max(300, window.innerHeight - 150);
+        const rowH=Math.max(18, Math.min(23, Math.floor(available / (rows + 1))));
+        screen.style.setProperty('--mobile-detail-row-h', `${rowH}px`);
+      }
+    });
   }
 
   function renderMobileSummaryAndDetail(){
@@ -602,3 +611,14 @@ const App=(()=>{
   return{init}
 })();
 document.addEventListener('DOMContentLoaded',App.init);
+
+// Final interaction patch: notes popover opens only on explicit click.
+document.addEventListener('DOMContentLoaded',()=>{
+  const host=document.querySelector('.scenario-notes-host');
+  const btn=document.querySelector('.notes-info');
+  if(host&&btn){
+    btn.addEventListener('click',(e)=>{e.preventDefault();e.stopPropagation();host.classList.toggle('notes-open');});
+    document.addEventListener('click',(e)=>{if(!host.contains(e.target))host.classList.remove('notes-open');});
+    document.addEventListener('keydown',(e)=>{if(e.key==='Escape')host.classList.remove('notes-open');});
+  }
+});
